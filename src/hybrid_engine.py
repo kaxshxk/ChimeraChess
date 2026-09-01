@@ -77,19 +77,24 @@ def _find_default_binary(name: str) -> str:
     candidates = []
     if name.lower() == "stockfish":
         candidates = [
+            os.path.join(_HERE, "engines", "stockfish.exe"),
+            os.path.join(_HERE, "ChimeraChess", "engines", "stockfish.exe"),
+            os.path.join(_HERE, "stockfish-windows-x86-64-avx2", "stockfish", "stockfish-windows-x86-64-avx2.exe"),
             os.path.join(_REPO_ROOT, "engines", "stockfish.exe"),
-            os.path.join(_REPO_ROOT, "engines", "stockfish"),
-            os.path.join(_PARENT_ROOT, "stockfish-windows-x86-64-avx2", "stockfish", "stockfish-windows-x86-64-avx2.exe"),
             os.path.join(_REPO_ROOT, "stockfish-windows-x86-64-avx2", "stockfish", "stockfish-windows-x86-64-avx2.exe"),
+            os.path.join(_PARENT_ROOT, "stockfish-windows-x86-64-avx2", "stockfish", "stockfish-windows-x86-64-avx2.exe"),
             os.path.join(_HERE, "stockfish.exe"),
+            os.path.join(_REPO_ROOT, "engines", "stockfish"),
         ]
     elif name.lower() == "reckless":
         candidates = [
-            os.path.join(_REPO_ROOT, "engines", "reckless.exe"),
-            os.path.join(_REPO_ROOT, "engines", "reckless"),
-            os.path.join(_PARENT_ROOT, "reckless.exe"),
-            os.path.join(_REPO_ROOT, "reckless.exe"),
+            os.path.join(_HERE, "engines", "reckless.exe"),
+            os.path.join(_HERE, "ChimeraChess", "engines", "reckless.exe"),
             os.path.join(_HERE, "reckless.exe"),
+            os.path.join(_REPO_ROOT, "engines", "reckless.exe"),
+            os.path.join(_REPO_ROOT, "reckless.exe"),
+            os.path.join(_PARENT_ROOT, "reckless.exe"),
+            os.path.join(_REPO_ROOT, "engines", "reckless"),
         ]
     
     for cand in candidates:
