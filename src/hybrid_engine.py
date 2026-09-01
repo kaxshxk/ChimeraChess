@@ -70,15 +70,42 @@ _MOVE_RE = re.compile(r'^[a-h][1-8][a-h][1-8][qrbnQRBN]?$')
 # Default engine paths
 # ---------------------------------------------------------------------------
 _HERE = os.path.dirname(os.path.abspath(__file__))
+_REPO_ROOT = os.path.abspath(os.path.join(_HERE, ".."))
+_PARENT_ROOT = os.path.abspath(os.path.join(_REPO_ROOT, ".."))
 
-DEFAULT_STOCKFISH_PATH = os.path.join(
-    _HERE,
-    "stockfish-windows-x86-64-avx2",
-    "stockfish",
-    "stockfish-windows-x86-64-avx2.exe",
-)
-DEFAULT_RECKLESS_PATH = os.path.join(_HERE, "reckless.exe")
-LOG_FILE = os.path.join(_HERE, "hybrid_engine.log")
+def _find_default_binary(name: str) -> str:
+    candidates = []
+    if name.lower() == "stockfish":
+        candidates = [
+            os.path.join(_REPO_ROOT, "engines", "stockfish.exe"),
+            os.path.join(_REPO_ROOT, "engines", "stockfish"),
+            os.path.join(_PARENT_ROOT, "stockfish-windows-x86-64-avx2", "stockfish", "stockfish-windows-x86-64-avx2.exe"),
+            os.path.join(_REPO_ROOT, "stockfish-windows-x86-64-avx2", "stockfish", "stockfish-windows-x86-64-avx2.exe"),
+            os.path.join(_HERE, "stockfish.exe"),
+        ]
+    elif name.lower() == "reckless":
+        candidates = [
+            os.path.join(_REPO_ROOT, "engines", "reckless.exe"),
+            os.path.join(_REPO_ROOT, "engines", "reckless"),
+            os.path.join(_PARENT_ROOT, "reckless.exe"),
+            os.path.join(_REPO_ROOT, "reckless.exe"),
+            os.path.join(_HERE, "reckless.exe"),
+        ]
+    
+    for cand in candidates:
+        if os.path.isfile(cand):
+            return cand
+            
+    import shutil
+    which_path = shutil.which(name)
+    if which_path and os.path.isfile(which_path):
+        return which_path
+
+    return candidates[0] if candidates else ""
+
+DEFAULT_STOCKFISH_PATH = _find_default_binary("stockfish")
+DEFAULT_RECKLESS_PATH = _find_default_binary("reckless")
+LOG_FILE = os.path.join(_REPO_ROOT, "hybrid_engine.log")
 
 # ---------------------------------------------------------------------------
 # Logging setup  (SEC-6: rotation, SEC-10/11: symlink protection)
