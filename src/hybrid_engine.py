@@ -769,10 +769,17 @@ class HybridEnsemble:
             print(f"bestmove {chosen}", flush=True)
 
     def _infinite_search_thread(self) -> None:
+        start_t = time.time()
         while True:
             with self._infinite_lock:
                 if not self._infinite_mode:
                     break
+            if time.time() - start_t >= self.move_time_cap:
+                log(f"Infinite search cap ({self.move_time_cap:.1f}s) reached — auto-stopping search...")
+                with self._infinite_lock:
+                    self._infinite_mode = False
+                self._send_to_all("stop")
+                break
             time.sleep(0.05)
 
         grace_start = time.time()
