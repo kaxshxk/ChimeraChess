@@ -9,8 +9,9 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![UCI](https://img.shields.io/badge/Protocol-UCI-green)](https://www.shredderchess.com/chess-features/uci-universal-chess-interface.html)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-[![Tests](https://github.com/YOUR_USERNAME/ChimeraChess/actions/workflows/test.yml/badge.svg)](https://github.com/YOUR_USERNAME/ChimeraChess/actions/workflows/test.yml)
-[![Engines](https://img.shields.io/badge/Engines-Stockfish%2018%20%2B%20Reckless-orange)](https://github.com/official-stockfish/Stockfish)
+[![Tests](https://img.shields.io/badge/Tests-84%20Passed-brightgreen?logo=pytest&logoColor=white)](#-running-tests)
+[![Stockfish 18](https://img.shields.io/badge/Stockfish-18-orange?logo=chess.com&logoColor=white)](https://github.com/official-stockfish/Stockfish)
+[![Reckless](https://img.shields.io/badge/Reckless-v0.10.0-red?logo=rust&logoColor=white)](https://github.com/codedeliveryservice/Reckless)
 
 </div>
 
