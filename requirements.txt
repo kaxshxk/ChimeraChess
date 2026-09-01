@@ -1,0 +1,6 @@
+# ChimeraChess has no third-party Python dependencies.
+# It uses only the Python standard library (Python 3.10+).
+#
+# Required external binaries (download separately):
+#   Stockfish 18  — https://stockfishchess.org/download/
+#   Reckless      — https://github.com/codedeliveryservice/Reckless/releases
